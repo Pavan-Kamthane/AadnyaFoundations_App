@@ -1,29 +1,79 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { Tabs } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { StyleSheet } from "react-native";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+const PRIMARY_COLOR = "#3786b6";
+const SECONDARY_COLOR = "#8e2273";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: styles.tabBar,
+        tabBarActiveTintColor: PRIMARY_COLOR,
+        tabBarInactiveTintColor: SECONDARY_COLOR,
+        tabBarLabelStyle: {
+          fontWeight: "600",
+        },
+      }}
+    >
+      <Tabs.Screen
+        name="dashboard"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="donations"
+        options={{
+          title: "Donations",
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="cash-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="contacts"
+        options={{
+          title: "Contacts",
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="call-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="volunteers"
+        options={{
+          title: "Volunteers",
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="people-outline" size={size} color={color} />
+          ),
+        }}
+      />
+    </Tabs>
   );
 }
+
+// styles
+const styles = StyleSheet.create({
+  tabBar: {
+    margin: 16,
+    borderRadius: 24,
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    backgroundColor: "#fff",
+    position: "absolute",
+    left: 16,
+    right: 16,
+    bottom: 16,
+    // Optional subtle tint behind tabs using secondary color with opacity
+    // backgroundColor: 'rgba(142, 34, 115, 0.1)', 
+  },
+});
