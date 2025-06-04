@@ -19,7 +19,7 @@ export default function RootLayout() {
       }}
     >
       <Tabs.Screen
-        name="dashboard"
+        name="index"
         options={{
           title: "Home",
           tabBarIcon: ({ size, color }) => (
