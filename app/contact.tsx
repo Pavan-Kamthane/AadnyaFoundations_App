@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     margin: 16,
+    marginBottom: 70,
   },
   header: {
     fontSize: 22,

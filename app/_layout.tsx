@@ -37,7 +37,7 @@ export default function RootLayout() {
         }}
       />
       <Tabs.Screen
-        name="contacts"
+        name="contact"
         options={{
           title: "Contacts",
           tabBarIcon: ({ size, color }) => (
@@ -61,8 +61,7 @@ export default function RootLayout() {
 // styles
 const styles = StyleSheet.create({
   tabBar: {
-    margin: 16,
-    borderRadius: 24,
+    margin: 0,
     elevation: 4,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -72,8 +71,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 16,
     right: 16,
-    bottom: 16,
-    // Optional subtle tint behind tabs using secondary color with opacity
-    // backgroundColor: 'rgba(142, 34, 115, 0.1)', 
+    // can you add border to the top of the tab bar
+    borderTopWidth: 1,
+    borderTopColor: "#3786b6",
   },
 });
